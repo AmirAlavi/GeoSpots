@@ -24,6 +24,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mhacks4.maxamir.geospots.MainActivity" />
         </activity>
+        <activity
+            android:name=".CreateSpotActivity"
+            android:label="@string/title_activity_create_spot"
+            android:parentActivityName=".CreateMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mhacks4.maxamir.geospots.CreateMenuActivity" />
+        </activity>
     </application>
 
 </manifest>

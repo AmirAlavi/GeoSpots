@@ -1,7 +1,6 @@
 package com.mhacks4.maxamir.geospots;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,30 +9,27 @@ import android.widget.Button;
 
 import com.mhacks4.maxamir.geospots.R;
 
-public class CreateMenuActivity extends Activity {
+public class CreateSpotActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_menu);
+        setContentView(R.layout.activity_create_spot);
 
-        //Add Button
-        final Button add_button = (Button) findViewById(R.id.addButton);
-        add_button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                //Action performed when clicked
-                Intent intent = new Intent(v.getContext(), CreateSpotActivity.class);
-                startActivity(intent);
+        //Cancel button
+        final Button button = (Button) findViewById(R.id.cancelButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                //Perform on click
             }
         });
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.create_menu, menu);
+        getMenuInflater().inflate(R.menu.create_spot, menu);
         return true;
     }
 
