@@ -24,6 +24,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mhacks4.maxamir.geospots.MainActivity" />
         </activity>
+        <activity
+            android:name=".PlayActivity"
+            android:label="@string/title_activity_play"
+            android:parentActivityName=".JoinActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mhacks4.maxamir.geospots.JoinActivity" />
+        </activity>
     </application>
 
 </manifest>
