@@ -27,9 +27,9 @@ public class CreateSpotActivity extends Activity {
         setContentView(R.layout.activity_create_spot);
 
         //Edit texts
-        final EditText tile_edit = (EditText) findViewById(R.id.editText);
-        final EditText question_edit = (EditText) findViewById(R.id.questionEditText);
-        final EditText answer_edit = (EditText) findViewById(R.id.answerEditText);
+        final EditText title_edit = (EditText) findViewById(R.id.titleEditg);
+        final EditText question_edit = (EditText) findViewById(R.id.questionEdit);
+        final EditText answer_edit = (EditText) findViewById(R.id.answerEdit);
 
         //Cancel button
         final Button cancel_button = (Button) findViewById(R.id.cancelButton);
@@ -48,7 +48,7 @@ public class CreateSpotActivity extends Activity {
                 //Perform on click
                 Intent intent = new Intent();
 
-                intent.putExtra("TITLE", tile_edit.getText());
+                intent.putExtra("TITLE", title_edit.getText());
                 intent.putExtra("LONG", longitude);
                 intent.putExtra("LAT", latitude);
                 intent.putExtra("Q", question_edit.getText());

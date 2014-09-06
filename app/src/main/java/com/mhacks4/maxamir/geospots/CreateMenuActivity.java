@@ -88,6 +88,7 @@ public class CreateMenuActivity extends Activity {
             );
 
             spots.add(new_spot);
+        }
 	}
 
     public void createDoc (String title, double latitude, double longitude, String prompt, double answer) {
