@@ -8,12 +8,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.ibm.mobile.services.cloudcode.IBMCloudCode;
+import com.ibm.mobile.services.core.IBMBluemix;
+import com.ibm.mobile.services.data.IBMData;
+import com.ibm.mobile.services.push.IBMPush;
+
 
 public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        IBMBluemix.initialize(this, "85c9072b-5b0d-4ae9-a24a-0f59029cf15e", "964c4118a4d2b841e98e385f337159c67ef75a38", "mybluemix.net");
+        IBMCloudCode.initializeService();
+        IBMData dataService = IBMData.initializeService();
+//        IBMPush.initializeService();
+
         setContentView(R.layout.activity_main);
 
         //Create button

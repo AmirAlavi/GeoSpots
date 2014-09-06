@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.ibm.mobile.services.data.IBMDataObject;
 import com.mhacks4.maxamir.geospots.R;
 
 import java.util.Vector;
@@ -33,6 +34,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+
+import bolts.Continuation;
+import bolts.Task;
 
 public class CreateMenuActivity extends Activity {
     Vector<Spot> spots;
@@ -93,9 +97,21 @@ public class CreateMenuActivity extends Activity {
 	}
 
     public void finishOnClick (View view) {
-        createDoc(spots.elementAt(0).getTitle(), spots.elementAt(0).getLatitude(), spots.elementAt(0).getLongitude(), ((BasicQASpot)spots.elementAt(0)).getQuestion(), ((BasicQASpot)spots.elementAt(0)).getAnswer());
+        System.out.println("in finishOnClick");
+        
+        for (Spot aSpot : spots) {
+            System.out.println("in loop, before save");
+            aSpot.save().continueWith(new Continuation<IBMDataObject, Object>() {
+                @Override
+                public Object then(Task<IBMDataObject> ibmDataObjectTask) throws Exception {
+                    return null;
+                }
+            });
+            System.out.println("in loop, after save");
+        }
+        //createDoc(spots.elementAt(0).getTitle(), spots.elementAt(0).getLatitude(), spots.elementAt(0).getLongitude(), ((BasicQASpot)spots.elementAt(0)).getQuestion(), ((BasicQASpot)spots.elementAt(0)).getAnswer());
     }
-
+/*
     public void createDoc (String title, double latitude, double longitude, String prompt, String answer) {
         JSONObject myObj = new JSONObject();
         try {
@@ -110,7 +126,9 @@ public class CreateMenuActivity extends Activity {
         new LongOperation().execute(myObj.toString());
 
     }
+*/
 
+    /*
     private class LongOperation extends AsyncTask<String, Void, Void> {
         protected Void doInBackground(String... json) {
             HttpClient client = new DefaultHttpClient();
@@ -130,14 +148,7 @@ public class CreateMenuActivity extends Activity {
                 e.printStackTrace();
             }
             return null;
-
-            /*
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            } catch (IOException e){}
-            return null;*/
         }
-    }
+    }*/
 
 }

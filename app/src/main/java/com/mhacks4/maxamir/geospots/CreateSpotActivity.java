@@ -48,11 +48,11 @@ public class CreateSpotActivity extends Activity {
                 //Perform on click
                 Intent intent = new Intent();
 
-                intent.putExtra("TITLE", title_edit.getText());
+                intent.putExtra("TITLE", title_edit.getText().toString());
                 intent.putExtra("LONG", longitude);
                 intent.putExtra("LAT", latitude);
-                intent.putExtra("Q", question_edit.getText());
-                intent.putExtra("A", answer_edit.getText());
+                intent.putExtra("Q", question_edit.getText().toString());
+                intent.putExtra("A", answer_edit.getText().toString());
 
                 setResult(1, intent);
                 finish();
