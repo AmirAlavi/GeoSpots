@@ -10,12 +10,16 @@ import android.widget.Button;
 
 import com.mhacks4.maxamir.geospots.R;
 
+import java.util.Vector;
+
 public class CreateMenuActivity extends Activity {
+    Vector<Spot> spots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_menu);
+        spots = new Vector<Spot>();
 
         //Add Button
         final Button add_button = (Button) findViewById(R.id.addButton);
@@ -23,7 +27,7 @@ public class CreateMenuActivity extends Activity {
             public void onClick(View v){
                 //Action performed when clicked
                 Intent intent = new Intent(v.getContext(), CreateSpotActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -48,4 +52,20 @@ public class CreateMenuActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == 1){
+            Spot new_spot = new BasicQASpot(
+                    data.getStringExtra("TITLE"),
+                    data.getDoubleExtra("LONG", 0),
+                    data.getDoubleExtra("LAT", 0),
+                    data.getStringExtra("Q"),
+                    data.getStringExtra("A")
+            );
+
+            spots.add(new_spot);
+        }
+    }
+
 }
