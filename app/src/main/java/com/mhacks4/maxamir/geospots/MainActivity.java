@@ -1,9 +1,12 @@
 package com.mhacks4.maxamir.geospots;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends Activity {
@@ -12,6 +15,25 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Create button
+        final Button create_button = (Button) findViewById(R.id.createButton);
+        create_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //Performed when button is clicked
+                Intent intent = new Intent(v.getContext(), CreateMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Join button
+        final Button join_button = (Button) findViewById(R.id.joinButton);
+        join_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                //Performed when the button is clicked
+                //Intent to open JoinActivity
+            }
+        });
     }
 
 

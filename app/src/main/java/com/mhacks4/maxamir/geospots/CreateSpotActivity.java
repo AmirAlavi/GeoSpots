@@ -19,8 +19,9 @@ public class CreateSpotActivity extends Activity {
         //Cancel button
         final Button button = (Button) findViewById(R.id.cancelButton);
         button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+            public void onClick(View v) {
                 //Perform on click
+                ((Activity) v.getContext()).finish();
             }
         });
     }
