@@ -78,6 +78,7 @@ public class CreateMenuActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (data == null) return;
         if (requestCode == 1){
             Spot new_spot = new BasicQASpot(
                     data.getStringExtra("TITLE"),
@@ -91,7 +92,11 @@ public class CreateMenuActivity extends Activity {
         }
 	}
 
-    public void createDoc (String title, double latitude, double longitude, String prompt, double answer) {
+    public void finishOnClick (View view) {
+        createDoc(spots.elementAt(0).getTitle(), spots.elementAt(0).getLatitude(), spots.elementAt(0).getLongitude(), ((BasicQASpot)spots.elementAt(0)).getQuestion(), ((BasicQASpot)spots.elementAt(0)).getAnswer());
+    }
+
+    public void createDoc (String title, double latitude, double longitude, String prompt, String answer) {
         JSONObject myObj = new JSONObject();
         try {
             myObj.put("_id", title);
