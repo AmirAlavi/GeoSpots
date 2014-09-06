@@ -98,7 +98,7 @@ public class CreateMenuActivity extends Activity {
 
     public void finishOnClick (View view) {
         System.out.println("in finishOnClick");
-        
+
         for (Spot aSpot : spots) {
             System.out.println("in loop, before save");
             aSpot.save().continueWith(new Continuation<IBMDataObject, Object>() {
