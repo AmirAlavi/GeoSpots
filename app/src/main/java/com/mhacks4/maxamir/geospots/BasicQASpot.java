@@ -3,9 +3,12 @@ package com.mhacks4.maxamir.geospots;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.ibm.mobile.services.data.IBMDataObjectSpecialization;
+
+@IBMDataObjectSpecialization("BasicQASpot")
 public class BasicQASpot extends Spot{
-    private String question;
-    private String answer;
+    private static final String QUESTION = "question";
+    private static final String ANSWER = "answer";
 
 
     BasicQASpot(String title, double longitude, double latitude){
@@ -14,26 +17,24 @@ public class BasicQASpot extends Spot{
 
     BasicQASpot(String title, double longitude, double latitude, String question, String answer){
         super(title, longitude, latitude);
-        this.question = question;
-        this.answer = answer;
+        setQuestion(question);
+        setAnswer(answer);
     }
 
-    void setQuestion(String question){
-        this.question = question;
+    public String getQuestion(){
+        return (String) getObject(QUESTION);
     }
 
-    void setAnswer(String answer){
-        this.answer = answer;
+    public String getAnswer(){
+        return (String) getObject(ANSWER);
     }
 
-    String getQuestion(){
-        return question;
+    public void setQuestion(String question){
+        setObject(QUESTION, question);
     }
 
-    String getAnswer(){
-        return answer;
-
+    public void setAnswer(String answer){
+        setObject(ANSWER, answer);
     }
-
 
 }
