@@ -27,7 +27,7 @@ public class CreateSpotActivity extends Activity {
         setContentView(R.layout.activity_create_spot);
 
         //Edit texts
-        final EditText title_edit = (EditText) findViewById(R.id.titleEditg);
+        final EditText title_edit = (EditText) findViewById(R.id.titleEdit);
         final EditText question_edit = (EditText) findViewById(R.id.questionEdit);
         final EditText answer_edit = (EditText) findViewById(R.id.answerEdit);
 

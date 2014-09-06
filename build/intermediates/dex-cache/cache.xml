@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\classes-c1a327e3d9837eec8124633ab648d7791bcaa72d.jar"
+        jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\5.0.89\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="d71573c9c5ea98a8db47ad6ff993a63d492b3bfa"/>
+    <item
+        dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-a25ba270261efd88bffc051423db1c73d11dd963.jar"
+        jar="D:\Users\MaxSD_000\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+
+</pre-dex-items>
