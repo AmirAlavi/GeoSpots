@@ -19,7 +19,7 @@
 
         <activity
             android:name=".CreateMenuActivity"
-            android:label="@string/title_activity_create_menu"
+            android:label="@string/title_activity_create_menu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mhacks4.maxamir.geospots.MainActivity" />
