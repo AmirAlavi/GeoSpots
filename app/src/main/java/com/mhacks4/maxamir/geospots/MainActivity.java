@@ -25,8 +25,8 @@ public class MainActivity extends Activity {
     private static final String deviceAlias = "TargetDevice";
     private static final String consumerID = "GeoSpots";
 
-    IBMPush push;
-    IBMPushNotificationListener notificationListener;
+    //IBMPush push;
+    //IBMPushNotificationListener notificationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,12 @@ public class MainActivity extends Activity {
         IBMBluemix.initialize(this, "85c9072b-5b0d-4ae9-a24a-0f59029cf15e", "964c4118a4d2b841e98e385f337159c67ef75a38", "GeoSpots.mybluemix.net");
         IBMData dataService = IBMData.initializeService();
         IBMCloudCode.initializeService();
-        //IBMPush push = IBMPush.initializeService();
-        push = IBMPush.initializeService();
+        IBMPush push = IBMPush.initializeService();
+        //push = IBMPush.initializeService();
 
         setContentView(R.layout.activity_main);
 
+        /*
         //call the push service to register the device
         push.register(deviceAlias, consumerID).continueWith(new Continuation<String,Void>() {
             @Override
@@ -56,10 +57,11 @@ public class MainActivity extends Activity {
                 }
                 return null;
             }
-        });
+        });*/
 
         //define IBMPushNotificationListener behavior on receipt of a push notification
 
+        /*
         notificationListener = new IBMPushNotificationListener() {
             @Override
             public void onReceive(final IBMSimplePushNotification message) {
@@ -70,7 +72,7 @@ public class MainActivity extends Activity {
                 //startActivity(intent);
             }
 
-        };
+        };*/
 
         //push.listen(notificationListener);
 
@@ -105,13 +107,14 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    /*
     @Override
     protected void onResume() {
         super.onResume();
         if (push != null) {
             push.listen(notificationListener);
         }
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

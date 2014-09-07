@@ -136,9 +136,11 @@ public class CreateMenuActivity extends Activity {
 
             items.add(data.getStringExtra("TITLE"));
             array_adapter.notifyDataSetChanged();
+            spots.add(new_spot);
         }
 	}
 
+    /*
     private void updateOtherDevices(){
         // initialize and retrieve an instance of the IBM CloudCode service
     //    IBMCloudCode.initializeService();
@@ -182,11 +184,11 @@ public class CreateMenuActivity extends Activity {
                 return null;
             }
         });
-    }
+    }*/
 
     public void finishOnClick (View view) {
         System.out.println("in finishOnClick");
-
+        System.out.println(spots.size());
         for (Spot aSpot : spots) {
             System.out.println("in loop, before save");
             aSpot.save().continueWith(new Continuation<IBMDataObject, Object>() {
@@ -200,7 +202,7 @@ public class CreateMenuActivity extends Activity {
 
         // Now that all spots have been created and finalized, update all the student devices.
 
-        updateOtherDevices();
+        //updateOtherDevices();
 
         //createDoc(spots.elementAt(0).getTitle(), spots.elementAt(0).getLatitude(), spots.elementAt(0).getLongitude(), ((BasicQASpot)spots.elementAt(0)).getQuestion(), ((BasicQASpot)spots.elementAt(0)).getAnswer());
     }
