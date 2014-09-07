@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        IBMBluemix.initialize(this, "85c9072b-5b0d-4ae9-a24a-0f59029cf15e", "964c4118a4d2b841e98e385f337159c67ef75a38", "mybluemix.net");
+        IBMBluemix.initialize(this, "85c9072b-5b0d-4ae9-a24a-0f59029cf15e", "964c4118a4d2b841e98e385f337159c67ef75a38", "GeoSpots.mybluemix.net");
         IBMData dataService = IBMData.initializeService();
         IBMCloudCode.initializeService();
         //IBMPush push = IBMPush.initializeService();

@@ -19,11 +19,9 @@ import com.ibm.mobile.services.core.http.IBMHttpResponse;
 import com.ibm.mobile.services.data.IBMDataObject;
 import com.mhacks4.maxamir.geospots.R;
 
-<<<<<<< HEAD
+
 import java.io.InputStream;
-=======
 import java.util.ArrayList;
->>>>>>> mapmaking
 import java.util.Vector;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
