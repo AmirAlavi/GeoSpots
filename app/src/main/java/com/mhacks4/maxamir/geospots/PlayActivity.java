@@ -26,10 +26,16 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.ibm.mobile.services.data.IBMQuery;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 public class PlayActivity extends FragmentActivity {
+    private List<BasicQASpot> objects;
     private GoogleMap map;
     private LocationManager location_manager;
     private LocationListener location_listener;
@@ -104,6 +110,29 @@ public class PlayActivity extends FragmentActivity {
 
             }
         };
+
+        IBMQuery<BasicQASpot> queryByClass = null;
+        try {
+            queryByClass = IBMQuery.queryForClass(BasicQASpot.class);
+        } catch(Exception e) {}
+
+        queryByClass.find().continueWith(new Continuation<List<BasicQASpot>, Void>() {
+
+            @Override
+            public Void then(Task<List<BasicQASpot>> task) throws Exception {
+                if (task.isFaulted()) {
+                    // Handle errors
+                } else {
+                    // do more work
+                    objects = task.getResult();
+                    for (BasicQASpot aspot : objects) {
+                        markGeoFence(aspot.getLatitude(), aspot.getLongitude(), 20);
+                    }
+                }
+                return null;
+            }
+        });
+
 
         location_manager.requestLocationUpdates(location_manager.NETWORK_PROVIDER, 0, 0, location_listener);
     }

@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
         join_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 //Performed when the button is clicked
-                Intent intent = new Intent(v.getContext(), JoinActivity.class);
+                Intent intent = new Intent(v.getContext(), PlayActivity.class);
                 startActivity(intent);
             }
         });
