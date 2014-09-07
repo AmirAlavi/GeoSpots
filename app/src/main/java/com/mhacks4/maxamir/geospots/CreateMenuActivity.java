@@ -5,14 +5,18 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.ibm.mobile.services.cloudcode.IBMCloudCode;
+import com.ibm.mobile.services.core.http.IBMHttpResponse;
 import com.ibm.mobile.services.data.IBMDataObject;
 import com.mhacks4.maxamir.geospots.R;
 
+import java.io.InputStream;
 import java.util.Vector;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -40,6 +44,8 @@ import bolts.Task;
 
 public class CreateMenuActivity extends Activity {
     Vector<Spot> spots;
+
+    private static final String CLASS_NAME = "CreateMenuAcitivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +102,51 @@ public class CreateMenuActivity extends Activity {
         }
 	}
 
+    private void updateOtherDevices(){
+        // initialize and retrieve an instance of the IBM CloudCode service
+    //    IBMCloudCode.initializeService();
+        IBMCloudCode myCloudCodeService = IBMCloudCode.getService();
+        JSONObject jsonObj = new JSONObject();
+        try {
+            jsonObj.put("key1", "value1");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Call the node.js application hosted in the IBM Cloud Code service
+        // with a POST call, passing in a non-essential JSONObject
+        // The URI is relative to, appended to, the BlueMix context root
+
+        myCloudCodeService.post("notifyOtherDevices", jsonObj).continueWith(new Continuation<IBMHttpResponse, Void>() {
+
+            @Override
+            public Void then(Task<IBMHttpResponse> task) throws Exception {
+                if (task.isCancelled()) {
+                    Log.e(CLASS_NAME, "Exception : Task" + task.isCancelled() + "was cancelled.");
+                } else if (task.isFaulted()) {
+                    Log.e(CLASS_NAME, "Exception : " + task.getError().getMessage());
+                } else {
+                    InputStream is = task.getResult().getInputStream();
+                    try {
+                        BufferedReader in = new BufferedReader(new InputStreamReader(is));
+                        String responseString = "";
+                        String myString = "";
+                        while ((myString = in.readLine()) != null)
+                            responseString += myString;
+
+                        in.close();
+                        Log.i(CLASS_NAME, "Response Body: " + responseString);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Log.i(CLASS_NAME, "Response Status from notifyOtherDevices: " + task.getResult().getHttpResponseCode());
+                }
+                return null;
+            }
+        });
+    }
+
     public void finishOnClick (View view) {
         System.out.println("in finishOnClick");
 
@@ -109,46 +160,13 @@ public class CreateMenuActivity extends Activity {
             });
             System.out.println("in loop, after save");
         }
+
+        // Now that all spots have been created and finalized, update all the student devices.
+
+        updateOtherDevices();
+
         //createDoc(spots.elementAt(0).getTitle(), spots.elementAt(0).getLatitude(), spots.elementAt(0).getLongitude(), ((BasicQASpot)spots.elementAt(0)).getQuestion(), ((BasicQASpot)spots.elementAt(0)).getAnswer());
     }
-/*
-    public void createDoc (String title, double latitude, double longitude, String prompt, String answer) {
-        JSONObject myObj = new JSONObject();
-        try {
-            myObj.put("_id", title);
-            myObj.put("latitude", latitude);
-            myObj.put("longitude", longitude);
-            myObj.put("prompt", prompt);
-            myObj.put("answer", answer);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-        new LongOperation().execute(myObj.toString());
 
-    }
-*/
-
-    /*
-    private class LongOperation extends AsyncTask<String, Void, Void> {
-        protected Void doInBackground(String... json) {
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000);
-            HttpResponse response;
-
-            try {
-                HttpPost post = new HttpPost("https://amiralavi.cloudant.com/geospots");
-                StringEntity se = new StringEntity(json[0]);
-                se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-                post.setEntity(se);
-                response = client.execute(post);
-                if (response != null) {
-
-                }
-            } catch(Exception e){
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }*/
 
 }

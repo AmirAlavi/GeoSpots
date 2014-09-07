@@ -12,20 +12,63 @@ import com.ibm.mobile.services.cloudcode.IBMCloudCode;
 import com.ibm.mobile.services.core.IBMBluemix;
 import com.ibm.mobile.services.data.IBMData;
 import com.ibm.mobile.services.push.IBMPush;
+import com.ibm.mobile.services.push.IBMPushNotificationListener;
+import com.ibm.mobile.services.push.IBMSimplePushNotification;
+
+import bolts.Continuation;
+import bolts.Task;
 
 
 public class MainActivity extends Activity {
+
+    private static final String deviceAlias = "TargetDevice";
+    private static final String consumerID = "GeoSpots";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         IBMBluemix.initialize(this, "85c9072b-5b0d-4ae9-a24a-0f59029cf15e", "964c4118a4d2b841e98e385f337159c67ef75a38", "mybluemix.net");
-        IBMCloudCode.initializeService();
         IBMData dataService = IBMData.initializeService();
-//        IBMPush.initializeService();
+        IBMCloudCode.initializeService();
+        IBMPush push = IBMPush.initializeService();
 
         setContentView(R.layout.activity_main);
+
+        //call the push service to register the device
+        push.register(deviceAlias, consumerID).continueWith(new Continuation<String,Void>() {
+            @Override
+            public Void then(Task<String> task) throws Exception {
+                if(task.isFaulted()) {
+                    Exception e = task.getError();
+                    //Handle failed calls
+                    System.out.println("Failed registration of device");
+                    e.printStackTrace();
+                } else {
+                    String deviceId= task.getResult();
+                    //Handle successful calls
+                    System.out.println("Successful registration of device");
+                }
+                return null;
+            }
+        });
+
+        //define IBMPushNotificationListener behavior on receipt of a push notification
+
+        IBMPushNotificationListener notificationListener = new IBMPushNotificationListener() {
+            @Override
+            public void onReceive(final IBMSimplePushNotification message) {
+                // Handle Push Notification
+                System.out.println("Recieved notificiation!");
+                Intent intent = new Intent(getBaseContext(), JoinActivity.class);
+                startActivity(intent);
+            }
+
+        };
+
+        push.listen(notificationListener);
+
+
 
         //Create button
         final Button create_button = (Button) findViewById(R.id.createButton);
@@ -67,4 +110,6 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
