@@ -9,5 +9,6 @@
     <string name="title_activity_join">JoinActivity</string>
     <string name="Submit">Submit</string>
     <string name="title_activity_play">PlayActivity</string>
+    <string name="title_activity_game">GameActivity</string>
 
 </resources>

@@ -9,14 +9,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.ibm.mobile.services.cloudcode.IBMCloudCode;
 import com.ibm.mobile.services.core.http.IBMHttpResponse;
 import com.ibm.mobile.services.data.IBMDataObject;
 import com.mhacks4.maxamir.geospots.R;
 
+<<<<<<< HEAD
 import java.io.InputStream;
+=======
+import java.util.ArrayList;
+>>>>>>> mapmaking
 import java.util.Vector;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -43,7 +50,10 @@ import bolts.Continuation;
 import bolts.Task;
 
 public class CreateMenuActivity extends Activity {
-    Vector<Spot> spots;
+    private Vector<Spot> spots;
+    ArrayList<String> items;
+    ArrayAdapter<String> array_adapter;
+    ListView list_view;
 
     private static final String CLASS_NAME = "CreateMenuAcitivity";
 
@@ -53,16 +63,44 @@ public class CreateMenuActivity extends Activity {
         setContentView(R.layout.activity_create_menu);
         spots = new Vector<Spot>();
 
+        items = new ArrayList<String>();
+        array_adapter = new ArrayAdapter<String>(this, R.layout.spot_row, R.id.rowTextView, items);
+        list_view = (ListView) findViewById(R.id.listViewMenu);
+        list_view.setAdapter(array_adapter);
+
+
+        //Remove row on click
+        list_view.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                String removed_title = items.remove(position);
+
+                for (int i = 0; i < spots.size(); i++){
+                    if (spots.elementAt(i).getTitle() == removed_title){
+                        spots.remove(i);
+                        break;
+                    }
+                }
+
+                array_adapter.notifyDataSetChanged();
+            }
+        });
+
         //Add Button
         final Button add_button = (Button) findViewById(R.id.addButton);
-        add_button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        add_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 //Action performed when clicked
                 Intent intent = new Intent(v.getContext(), CreateSpotActivity.class);
                 startActivityForResult(intent, 1);
             }
         });
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
 
 
@@ -98,7 +136,8 @@ public class CreateMenuActivity extends Activity {
                     data.getStringExtra("A")
             );
 
-            spots.add(new_spot);
+            items.add(data.getStringExtra("TITLE"));
+            array_adapter.notifyDataSetChanged();
         }
 	}
 

@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
-import com.mhacks4.maxamir.geospots.R;
 
 public class JoinActivity extends Activity {
 
@@ -41,7 +40,7 @@ public class JoinActivity extends Activity {
 
     public void sendURL(View view) {
         Intent intent = new Intent(this, PlayActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
+        EditText editText = (EditText) findViewById(R.id.responseEdit);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
