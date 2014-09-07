@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.ibm.mobile.services.cloudcode.IBMCloudCode;
 import com.ibm.mobile.services.core.IBMBluemix;
@@ -24,6 +25,9 @@ public class MainActivity extends Activity {
     private static final String deviceAlias = "TargetDevice";
     private static final String consumerID = "GeoSpots";
 
+    IBMPush push;
+    IBMPushNotificationListener notificationListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +35,8 @@ public class MainActivity extends Activity {
         IBMBluemix.initialize(this, "85c9072b-5b0d-4ae9-a24a-0f59029cf15e", "964c4118a4d2b841e98e385f337159c67ef75a38", "mybluemix.net");
         IBMData dataService = IBMData.initializeService();
         IBMCloudCode.initializeService();
-        IBMPush push = IBMPush.initializeService();
+        //IBMPush push = IBMPush.initializeService();
+        push = IBMPush.initializeService();
 
         setContentView(R.layout.activity_main);
 
@@ -55,18 +60,19 @@ public class MainActivity extends Activity {
 
         //define IBMPushNotificationListener behavior on receipt of a push notification
 
-        IBMPushNotificationListener notificationListener = new IBMPushNotificationListener() {
+        notificationListener = new IBMPushNotificationListener() {
             @Override
             public void onReceive(final IBMSimplePushNotification message) {
                 // Handle Push Notification
                 System.out.println("Recieved notificiation!");
-                Intent intent = new Intent(getBaseContext(), JoinActivity.class);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Push worked", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(getBaseContext(), JoinActivity.class);
+                //startActivity(intent);
             }
 
         };
 
-        push.listen(notificationListener);
+        //push.listen(notificationListener);
 
 
 
@@ -97,6 +103,14 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (push != null) {
+            push.listen(notificationListener);
+        }
     }
 
     @Override
