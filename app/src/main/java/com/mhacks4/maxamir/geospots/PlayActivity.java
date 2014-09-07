@@ -82,9 +82,9 @@ public class PlayActivity extends FragmentActivity {
                         Log.d("YES", "FINALLY");
                         //Close enough to GeoSpot
                         Intent intent = new Intent(getBaseContext(), GameActivity.class);
-                        startActivity(intent);
-
                         geoSpots.remove(i);
+
+                        startActivity(intent);
                         break;
                     }
                 }
@@ -125,7 +125,7 @@ public class PlayActivity extends FragmentActivity {
 
         Marker marker = map.addMarker(new MarkerOptions()
             .position(new LatLng(lat, lng))
-            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker)));
 
         geoSpots.add(new LatLng(lat, lng));
     }
