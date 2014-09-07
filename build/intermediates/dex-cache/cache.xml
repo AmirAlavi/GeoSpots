@@ -2,23 +2,17 @@
 <pre-dex-items>
 
     <item
-        dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\ibmcloudcode-93c017987cff3039d0d776a5dfffe75cc2c9b8cd.jar"
-        jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\libs\ibmcloudcode.jar"
+        dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\ibmfilesync-87e26954b71d308bd0bc309ce4bcec32983a19c5.jar"
+        jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\libs\ibmfilesync.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="e0ec5693d04b6916e1ca7f822d55eeeac7a7142e"/>
+        sha1="d9b93cea5293fa73c1545d4f98801cfc6a34096a"/>
     <item
         dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-a25ba270261efd88bffc051423db1c73d11dd963.jar"
         jar="D:\Users\MaxSD_000\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
-    <item
-        dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\ibmfilesync-87e26954b71d308bd0bc309ce4bcec32983a19c5.jar"
-        jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\libs\ibmfilesync.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="d9b93cea5293fa73c1545d4f98801cfc6a34096a"/>
     <item
         dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\ibmbluemix-ac277218f99154d7d8595aac53c84ec3e6c2781d.jar"
         jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\libs\ibmbluemix.jar"
@@ -32,17 +26,23 @@
         revision="20.0.0"
         sha1="b400aa4bb99e5a5642feb5bcaf68a7df12ff325f"/>
     <item
-        dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\ibmlocation-c902baa1d00fe14f59f946086abef9b21bf7f42e.jar"
-        jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\libs\ibmlocation.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="4263a320adfd15bf0fefb85b241deb7b3d1086e3"/>
-    <item
         dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\ibmpush-cb6fd1531b3417d554d6197fa743a917eca4477d.jar"
         jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\libs\ibmpush.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="c84d9a7172c478b543b8b84674b99b490a91a93e"/>
+    <item
+        dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\ibmcloudcode-93c017987cff3039d0d776a5dfffe75cc2c9b8cd.jar"
+        jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\libs\ibmcloudcode.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e0ec5693d04b6916e1ca7f822d55eeeac7a7142e"/>
+    <item
+        dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\ibmlocation-c902baa1d00fe14f59f946086abef9b21bf7f42e.jar"
+        jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\libs\ibmlocation.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="4263a320adfd15bf0fefb85b241deb7b3d1086e3"/>
     <item
         dex="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\pre-dexed\debug\classes-c1a327e3d9837eec8124633ab648d7791bcaa72d.jar"
         jar="F:\Projects\AndroidStudioProjects\GeoSpots\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\5.0.89\classes.jar"

@@ -47,7 +47,6 @@ public class PlayActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@","@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 

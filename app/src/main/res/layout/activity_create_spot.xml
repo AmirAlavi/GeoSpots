@@ -31,16 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Title: "
-        android:id="@+id/titleView"
-        android:layout_below="@+id/cancelButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Question: "
         android:id="@+id/questionView"
         android:layout_alignBottom="@+id/questionEdit"
@@ -62,9 +52,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/titleEdit"
         android:hint="Type here"
-        android:layout_alignTop="@+id/titleView"
         android:layout_alignLeft="@+id/questionEdit"
-        android:layout_alignStart="@+id/questionEdit" />
+        android:layout_alignStart="@+id/questionEdit"
+        android:layout_below="@+id/cancelButton" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -85,4 +75,15 @@
         android:layout_below="@+id/questionEdit"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Title: "
+        android:id="@+id/textView"
+        android:layout_above="@+id/questionEdit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
