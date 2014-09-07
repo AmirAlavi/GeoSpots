@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Create"
         android:id="@+id/createButton"
-        android:background="#40000000"
+        android:background="#70000000"
+        android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -25,7 +26,8 @@
         android:layout_height="wrap_content"
         android:text="Join"
         android:id="@+id/joinButton"
-        android:background="#40000000"
+        android:background="#70000000"
+        android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -35,9 +37,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="GeoSpots"
-        android:id="@+id/textView"
+        android:id="@+id/promptView"
         android:textSize="70dp"
-        android:textColor="#ffcb05"
+        android:textColor="#ffffff"
+        android:typeface="serif"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
