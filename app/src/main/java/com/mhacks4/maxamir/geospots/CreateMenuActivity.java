@@ -54,8 +54,9 @@ public class CreateMenuActivity extends Activity {
         setContentView(R.layout.activity_create_menu);
         spots = new Vector<Spot>();
 
-        array_adapter = new ArrayAdapter<String>(this, R.layout.spot_row, items);
-        list_view = (ListView) findViewById(R.id.listView);
+        items = new ArrayList<String>();
+        array_adapter = new ArrayAdapter<String>(this, R.layout.spot_row, R.id.rowTextView, items);
+        list_view = (ListView) findViewById(R.id.listViewMenu);
         list_view.setAdapter(array_adapter);
 
 
