@@ -1,6 +1,5 @@
 package com.mhacks4.maxamir.geospots;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -11,15 +10,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-
-import com.google.android.gms.games.Game;
-import com.google.android.gms.location.Geofence;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
@@ -35,7 +28,7 @@ import bolts.Continuation;
 import bolts.Task;
 
 public class PlayActivity extends FragmentActivity {
-    private List<BasicQASpot> objects;
+    private List<Spot> objects;
     private GoogleMap map;
     private LocationManager location_manager;
     private LocationListener location_listener;
@@ -80,15 +73,34 @@ public class PlayActivity extends FragmentActivity {
                    // buildGeofence(my_lat, my_long, 20, "t");
                 }
 
+                System.out.println("GEOSPOTS" + geoSpots.size());
                 for(int i = 0; i < geoSpots.size(); i++) {
                     LatLng pos = geoSpots.get(i);
-                    Log.d("FUCK", ""+haversine.haversine(pos.latitude, pos.longitude, my_lat, my_long));
+                    System.out.println(haversine.haversine(pos.latitude, pos.longitude, my_lat, my_long) <= 20);
                     if (haversine.haversine(pos.latitude, pos.longitude, my_lat, my_long) <= 50) {
-                        Log.d("YES", "FINALLY");
+                        BasicQASpot spot = new BasicQASpot("", 1.0, 1.0);
+
+                        System.out.println(objects==null);
+
+                        if (objects == null){
+
+                            break;
+                        }else{
+
+                        for (Spot b: objects){
+                            if ((b.getLatitude() == pos.latitude) && (b.getLongitude() == pos.longitude)){
+                                spot = (BasicQASpot) b;
+                                break;
+                            }
+                        }}
+
+                        System.out.print("WEHFOWUHE:OHGWER:OTHWE:OHWGPOEHW:OUH");
                         //Close enough to GeoSpot
                         Intent intent = new Intent(getBaseContext(), GameActivity.class);
                         geoSpots.remove(i);
 
+                        intent.putExtra("Q", spot.getQuestion());
+                        intent.putExtra("A", spot.getAnswer());
                         startActivity(intent);
                         break;
                     }
@@ -111,27 +123,39 @@ public class PlayActivity extends FragmentActivity {
             }
         };
 
-        IBMQuery<BasicQASpot> queryByClass = null;
+        IBMQuery<Spot> queryByClass = null;
         try {
-            queryByClass = IBMQuery.queryForClass(BasicQASpot.class);
-        } catch(Exception e) {}
+            queryByClass = IBMQuery.queryForClass(Spot.class);
+        } catch(Exception e) {
+            System.out.println("caught query exception");
+            e.printStackTrace();
 
-        queryByClass.find().continueWith(new Continuation<List<BasicQASpot>, Void>() {
+            finish();
+        }
 
-            @Override
-            public Void then(Task<List<BasicQASpot>> task) throws Exception {
-                if (task.isFaulted()) {
-                    // Handle errors
-                } else {
-                    // do more work
-                    objects = task.getResult();
-                    for (BasicQASpot aspot : objects) {
-                        markGeoFence(aspot.getLatitude(), aspot.getLongitude(), 20);
+        try {
+            queryByClass.find().continueWith(new Continuation<List<Spot>, Void>() {
+
+                @Override
+                public Void then(Task<List<Spot>> task) throws Exception {
+                    if (task.isFaulted()) {
+                        // Handle errors
+                        System.out.println("query failed");
+                    } else {
+                        // do more work
+                        System.out.println("query success");
+                        objects = task.getResult();
+
+                        System.out.println(objects.size());
+
+                        for (Spot aspot : objects) {
+                            markGeoFence(aspot.getLatitude(), aspot.getLongitude(), 20);
+                        }
                     }
+                    return null;
                 }
-                return null;
-            }
-        });
+            });
+        }catch(Exception e) {}
 
 
         location_manager.requestLocationUpdates(location_manager.NETWORK_PROVIDER, 0, 0, location_listener);

@@ -1,8 +1,5 @@
 package com.mhacks4.maxamir.geospots;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.ibm.mobile.services.data.IBMDataObject;
 import com.ibm.mobile.services.data.IBMDataObjectSpecialization;
 
@@ -15,7 +12,11 @@ public class Spot extends IBMDataObject{
 //    private double longitude;
 //    private double latitude;
 
-    Spot(String title, double longitude, double latitude){
+    public Spot(){
+        super();
+    }
+
+    public Spot(String title, double longitude, double latitude){
         setTitle(title);
         setLongitude(longitude);
         setLatitude(latitude);

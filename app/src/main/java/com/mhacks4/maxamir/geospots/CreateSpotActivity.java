@@ -13,8 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.mhacks4.maxamir.geospots.R;
-
 public class CreateSpotActivity extends Activity {
     private double longitude;
     private double latitude;

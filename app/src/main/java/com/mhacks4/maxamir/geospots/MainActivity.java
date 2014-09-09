@@ -7,17 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.ibm.mobile.services.cloudcode.IBMCloudCode;
 import com.ibm.mobile.services.core.IBMBluemix;
 import com.ibm.mobile.services.data.IBMData;
 import com.ibm.mobile.services.push.IBMPush;
-import com.ibm.mobile.services.push.IBMPushNotificationListener;
-import com.ibm.mobile.services.push.IBMSimplePushNotification;
-
-import bolts.Continuation;
-import bolts.Task;
 
 
 public class MainActivity extends Activity {
